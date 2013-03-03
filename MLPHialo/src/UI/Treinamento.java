@@ -166,10 +166,16 @@ public class Treinamento extends javax.swing.JFrame {
         double moment = Double.parseDouble (text_momento.getText());
         double minimumError = Double.parseDouble(text_numero_epocas.getText());
         
-        Training.training_network (combo_funcao.getSelectedIndex(), learningRate, moment, minimumError);
+        if (learningRate < 0 || learningRate > 1 || moment < 0 || moment > 1 || minimumError < 0) {
+            JOptionPane.showMessageDialog(null, "Entradas inválidas.", "Erro", JOptionPane.ERROR_MESSAGE);
+        } 
+        
+        else {
+            Training.training_network (combo_funcao.getSelectedIndex(), learningRate, moment, minimumError);
 
-        botao_usarRede.setEnabled(true);
-        botao_treinar.setEnabled(false);
+            botao_usarRede.setEnabled(true);
+            botao_treinar.setEnabled(false);
+        }
     }//GEN-LAST:event_botao_treinarActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botao_treinar;
